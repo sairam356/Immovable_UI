@@ -39,7 +39,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="loadPropertyById()">
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -174,16 +174,16 @@
 
                   <div class="card-body">
 
-                    <h2 class="card-title">1 Bed in Index Tower DIFC</h2>
-                    <p class="card-text"> 1 BedRoom | 2 BathRoom | 1,333 sqft | DIFC</p>
-                    <h5>Dubai, United Arab Emirates</h3>
-                    <p>A mature real estate market with a high return on investment</p>
+                    <h2 class="card-title " id ="header1">1 Bed in Index Tower DIFC</h2>
+                    <p class="card-text" id="header2"> 1 BedRoom | 2 BathRoom | 1,333 sqft | DIFC</p>
+                    <h5 id ="header3">Dubai, United Arab Emirates</h3>
+                    <p id ="header4">A mature real estate market with a high return on investment</p>
 
-                     <h5>Holiday home</h3>
-                     <p>Professionally managed short term rental for business travelers and families</p>
+                     <h5 id ="header5">Holiday home</h3>
+                     <p id ="header6">Professionally managed short term rental for business travelers and families</p>
 
                      <h4>Financial Details</h4>
-                          <table  class ="text-bg-light p-3  table table-borderless  highltcolor">
+                          <table  class ="text-bg-light p-3  table table-borderless  highltcolor" id="tableData">
                                 <tr> 
                                    <td>Property price</td>
                                    <td>123123</td>
@@ -220,20 +220,20 @@
               </div>
               <div class="col ">
                 <div class="card h-70" >
-                   <img src="http://drive.google.com/uc?export=view&id=13V4GL1fev3j0E2sy6ZdkMlvSQY4ZkbJf" class="card-img-top" alt="...">
+                   <img src="http://drive.google.com/uc?export=view&id=13V4GL1fev3j0E2sy6ZdkMlvSQY4ZkbJf" id ="productImage" class="card-img-top" alt="...">
                      <div class="card-body">
                           <h4 class="card-title"><center> Property Price</center></h4>
-                          <h3 ><center> Rupees 1000000 </center></h3>
+                          <h3 id="propertyPrice"><center> Rupees 1000000 </center></h3>
 
                               <div class="progress " role="progressbar" aria-label="Basic example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
                                  <div class="progress-bar bg-info " style="width: 75%"></div>
                                  </div>
                               <div>
-                               <p class ="left-align-text">70% funded  <span class ="texttoright">AED 34566 Avaliable</span></p>
-                               <p class ="left-align-text">485 investors  <span class ="texttoright">30 days left</span></p>
+               <p class ="left-align-text" id ="fundedPercentage">70% funded  <span class ="texttoright" id="avaliableAmount">AED 34566 Avaliable</span></p>
+                               <p class ="left-align-text" id ="noOfInvestors">485 investors  <span class ="texttoright">30 days left</span></p>
                                
                               </div>
-                             <table  class ="text-bg-light p-3  table table-borderless highltcolor">
+                             <table  class ="text-bg-light p-3  table table-borderless highltcolor" id ="tableData2">
                              <tr> 
                                 <td>Projected return</td>
                                 <td>20%</td>
@@ -255,10 +255,10 @@
 
                              <div class="row g-3">
                                 <div class="col">
-                                  <input type="text" class="form-control" placeholder="Enter Amount" aria-label="Enter Amount">
+                                  <input type="text" class="form-control" id="enterAmount" placeholder="Enter Amount" aria-label="Enter Amount">
                                 </div>
                                 <div class="col-4">
-                                  <button type="submit" class="btn btn-outline-dark color-currency">Add To CART</button>
+                                  <button type="submit" class="btn btn-outline-dark color-currency" id="addTOCart">Add To CART</button>
                                 </div>
                             </div>
                      </div>
