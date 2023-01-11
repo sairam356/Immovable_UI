@@ -24,7 +24,7 @@ function  getPropertiesInfo(){
 getAjaxCall('properties').then(function (data) {
 			   var htmlData = "";
 			   console.log(data);
-			   
+
 				for (let i = 0; i < data.length; i++) {
 					 var description = data[i].propertyMetaData.description1;
 					 const desp = description.split(":");
@@ -45,7 +45,7 @@ getAjaxCall('properties').then(function (data) {
 
 			         <p></p>
 			           <h5 class="card-title">${desp[0]}</h5>
-			           <p class="card-text text-bg-light p-3"> <b class="color-currency"> ${data[i].currency} ${data[i].totalInvestmentCost} </b></p>
+			           <p class="card-text text-bg-light p-3"> <b class="color-currency"> ₹ ${data[i].totalInvestmentCost} </b></p>
 			           <table  class ="text-bg-light p-3  table table-borderless">
 			           <tr> 
 			                                <td>Projected return</td>
@@ -61,7 +61,7 @@ getAjaxCall('properties').then(function (data) {
 			                            </tr>
 			                            <tr>
 			                                <td>Average occupancy rate</td>
-			                                <td>${data[i].occupancyRate} </td>
+			                                <td>${data[i].occupancyRate} %</td>
 			                            </tr>
 			          
 			          </table>
@@ -82,15 +82,38 @@ getAjaxCall('properties').then(function (data) {
 
 function loadPropertyById(){
 
-	var querParams = getUrlVars()["propertyid"];
+   var querParams = getUrlVars()["propertyid"];
+   var url=  "properties/"+querParams;
+     	getAjaxCall(url).then(function (resultObj) {
 
-   var url=  "properties/id="+querParams;
-	getAjaxCall().then(function (data) {
+     	    var data = resultObj.property;
 
+	        var description = data.propertyMetaData.description1;
 
-		var htmlData = "";
+	        var description2 = data.propertyMetaData.description1;
 
-		htmlData = htmlData+` `;
+	        var desp = description.split(":");
+
+	        var desp2 = description2.split(":");
+           
+	        $("#header1").html(desp[0]);
+	        $("#header2").html(desp[1]);
+	        $("#header3").html(desp[2]);
+	        $("#header4").html(desp[3]);
+	        $("#header5").html(desp2[0]);
+	        $("#header6").html(desp2[1]);   
+	        $('#tableData1P1').html("₹"+data.actualpropertyPrice);
+			$('#tableData1P2').html("₹"+data.transcationCostPrice);
+			$('#tableData2P3').html("₹"+data.propertyMetaData.annualGrossRent);
+			$('#tableData2P4').html("₹"+data.propertyMetaData.serivceCharges);
+			$('#tableData2P5').html("₹"+data.propertyMetaData.maintainceCharges);
+            $("#tableData3P6").html(data.occupancyRate+"%");
+            $('#totalPropertyPrice').append(`<center> ₹ ${data.totalInvestmentCost}</center>`);
+            $("#fundedPerCentage").css("width",`${data.propertyStakeInfo.stake_funded}%`);
+            $('#fundedPercentageInNum').append(`${data.propertyStakeInfo.stake_funded}% Funded`);
+            $('#avaliableAmount').append(`₹ ${data.propertyStakeInfo.totalAvaliableAmount} Avaliable`);
+           
+
 
 	},function (xhr, status, err) {
      console.log(status, err);
