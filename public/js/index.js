@@ -9,7 +9,7 @@ $(document).ready(function() {
 
   	$("#addTOCart").click(function(event) {
 			event.preventDefault();
-
+            
 			var amount = $('#enterAmount').val();
 
 

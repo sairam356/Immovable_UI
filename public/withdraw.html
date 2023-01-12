@@ -6,6 +6,9 @@
            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+<script src ="./js/jquery.min.js"></script> 
+<script src="./js/index.js"></script>
+<script src="./js/wallet.js"></script>
 
     <style>
 
@@ -172,12 +175,12 @@
                 <h5> <center> Deposit Amount </center></h5>
                 <div class="input-group input-group-lg">
                   <span class="input-group-text" id="inputGroup-sizing-lg">Rupees</span>
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="2000" >
+                  <input type="text" id="amount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="0000" >
                 </div>
                   <br>
                   <hr>
 
-                  <h4> Total <span class ="texttoright">Rupees 0</span></h4>
+                  <h4> Total <span class ="texttoright">Rupees</span></h4>
                 
         </div>
     </div>
@@ -234,7 +237,7 @@
 <br>
 <br>
       <div>
-        <button type="button" class="btn btn-primary btn-lg d-grid gap-2 col-6 mx-auto">Withdrawl Amount</button>
+        <button type="button" class="btn btn-primary btn-lg d-grid gap-2 col-6 mx-auto" onclick="withdraw()">Withdrawl Amount</button>
       </div>
     
     
