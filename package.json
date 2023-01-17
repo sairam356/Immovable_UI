@@ -1,20 +1,21 @@
 {
   "name": "immovable-ui-test",
   "version": "0.0.0",
-  "description": "Serving static files in Express - example for Stack Overflow",
+  "description": "Immovable",
   "main": "app.js",
   "scripts": {
-    "run": "node app.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rsp/node-express-static-example.git"
+    "url": "https://github.com/sairam356/Immovable_UI.git"
   },
   "engine": {
     "node": "*",
     "npm": "*"
   },
-  "author": "Rafał Pocztarski <r.pocztarski@gmail.com> (https://rsp.github.io/)",
+  "author": "Sairam",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sairam356/Immovable_UI.git"
