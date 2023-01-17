@@ -19,7 +19,7 @@ $(document).ready(function() {
                     	    console.log("####### Oauth call ############")
                             console.log(resultObj1);
                             localStorage.setItem("tokenData", JSON.stringify(resultObj1));
-                                    var url = "./index.html"
+                                    var url = "./homepage.html"
 				                     	$(location).attr('href', url); 
 
                     },function (xhr, status, err) {

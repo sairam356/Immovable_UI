@@ -415,7 +415,7 @@ function processedToPayment(){
       putAjaxCall(url, obj).then(function (resultObj) {
             console.log(resultObj);
                 localStorage.removeItem("cartItems");
-            	var url = "./index.html"
+            	var url = "./homepage.html"
 			    $(location).attr('href', url);
 
       },function (xhr, status, err) {

@@ -20,7 +20,7 @@ function deposit(){
 		};
 	postAjaxCall("wallet/save",wallet,callbackDW).then(function (data){
 		if (data != null) {
-		window.location.href='./index.html';
+		window.location.href='./homepage.html';
 		}
 
 	},function (xhr, status, err) {
@@ -37,7 +37,7 @@ function deposit(){
 		var url=  "wallet/transaction";
 	postAjaxCall(url,transaction,callbackDW).then(function (data){
 		if (data !=null) {
-			window.location.href='./index.html';
+			window.location.href='./homepage.html';
 		}
 
 	},function (xhr, status, err) {
@@ -61,7 +61,7 @@ function withdraw(){
 var url=  "wallet/transaction";
 postAjaxCall(url,transaction,callbackDW).then(function (data){
 	if (data !=null) {
-		window.location.href='./index.html';
+		window.location.href='./homepage.html';
 	}
 
 },function (xhr, status, err) {
