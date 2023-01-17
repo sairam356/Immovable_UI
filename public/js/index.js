@@ -45,14 +45,12 @@ $(document).ready(function() {
 
     $('#processedToPayment').click(function(event){
          event.preventDefault();
-    	var cartItems = JSON.parse(localStorage.getItem("cartItems"));
+ 
 
-
-    	console.log(cartItems);
 
 													
 
-    })
+    });
 
 
 
@@ -285,7 +283,7 @@ function showCartItems(){
 						    <div class="card">
 						      <div class="card-body">
 						        <h5 class="card-title">Total Payment  <span class ="texttoright">Rupees ${totalAmount}</span></h5>
-						         <button type="button" class="btn btn-outline-dark color-currency" id ="processedToPayment">Processed to Payment</button>      
+						         <button type="button" class="btn btn-outline-dark color-currency" onclick="processedToPayment()">Processed to Payment</button>      
 						      
 						        </div>
 						      </div>
@@ -379,12 +377,50 @@ function deleteCartItem(cartItemId){
 }
 
 function showCustomerRenveueInfo(custPropertyStackData){
-	 console.log("###############################")
-	 console.log(custPropertyStackData)
+	 console.log("###############################");
+	 console.log(custPropertyStackData);
      var data = custPropertyStackData.split(":");
      var customerId = data[0];
      var customerPropertYStake = data[1];
 
+}
+
+function processedToPayment(){
+	console.log("###############################");
+	   	var cartObj = JSON.parse(localStorage.getItem("cartItems"));
+	   	var pstakeList =[];
+        var obj ={}; 
+        obj.customerId = cartObj.customerId;
+        obj.cartAmount = cartObj.totalAmount;
+       
+
+        var cartItemsObj = cartObj.cartItems;
+
+
+        for(let i =0;i<cartItemsObj.length;i++){
+             var pstakeObj ={};
+             pstakeObj.customerId = cartObj.customerId;
+             pstakeObj.propertyId = cartItemsObj[i].property.id;
+             pstakeObj.investmentAmount = cartItemsObj[i].price;
+             pstakeObj.transcationType = "BUY";
+
+             pstakeList.push(pstakeObj);
+
+        }
+          obj.propertyStakeReDTO = pstakeList;
+
+      console.log(obj);
+
+      var url = "customer/updateCustomerStake";      
+      putAjaxCall(url, obj).then(function (resultObj) {
+            console.log(resultObj);
+                localStorage.removeItem("cartItems");
+            	var url = "./index.html"
+			    $(location).attr('href', url);
+
+      },function (xhr, status, err) {
+	     console.log(status, err);
+	  });
 }
 
 function postAjaxCall(endPoint ,obj,callback){
