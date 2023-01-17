@@ -166,21 +166,21 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Withdraw</h1>
-         <h2> Total Avaliable Balance   Rupees 10000</h2>
+         <h2> Total Avaliable Balance   </h2>
       </div>
       <div class="row">
   <div class="col-sm-6 mb-3 mb-sm-0">
     <div class="card">
       <div class="card-body">
-                <h5> <center> Deposit Amount </center></h5>
+                <h5> <center> Withdraw Amount </center></h5>
                 <div class="input-group input-group-lg">
-                  <span class="input-group-text" id="inputGroup-sizing-lg">Rupees</span>
-                  <input type="text" id="amount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="0000" >
+                  <span class="input-group-text" id="inputGroup-sizing-lg">₹ </span>
+                  <input type="text" id="enteredAmount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="0000" >
                 </div>
                   <br>
                   <hr>
 
-                  <h4> Total <span class ="texttoright">Rupees</span></h4>
+                  <h4> Total <span class ="texttoright" id ="showChangedValue"></span></h4>
                 
         </div>
     </div>
@@ -237,7 +237,7 @@
 <br>
 <br>
       <div>
-        <button type="button" class="btn btn-primary btn-lg d-grid gap-2 col-6 mx-auto" onclick="withdraw()">Withdrawl Amount</button>
+        <button type="button" class="btn btn-primary btn-lg d-grid gap-2 col-6 mx-auto" onclick="withdraw()">Withdraw Amount</button>
       </div>
     
     

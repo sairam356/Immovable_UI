@@ -1,5 +1,5 @@
 function deposit(){
-	var amount = $('#amount').val();
+	var amount = $('#enteredAmount').val();
 	console.log(amount);
 	
 	var url=  "wallet/getInfo/123"
@@ -50,7 +50,7 @@ function callbackDW(){
 }
 
 function withdraw(){
-	var amount = $('#amount').val();
+	var amount = $('#enteredAmount').val();
 	console.log(amount);
 	const transaction = {
   customerId: "123",
@@ -100,3 +100,4 @@ for (let i = 0; i < transactions.length; i++) {
      console.log(status, err);
   	});
 }
+
