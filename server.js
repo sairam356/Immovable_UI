@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var morgan  = require('morgan');
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'views')));
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'));
 
