@@ -507,7 +507,8 @@ function deleteAjaxCall(endPoint){
 
 
 function getHostURL(){
- var hostURL = "http://localhost:9191/"
+
+ var hostURL ="https://immovable-property-service-kushalbajji-dev.apps.sandbox.x8i5.p1.openshiftapps.com"; //"http://localhost:9191/"
    return hostURL;
 }
 
