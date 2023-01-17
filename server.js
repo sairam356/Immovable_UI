@@ -1,9 +1,7 @@
 const express = require('express');
 const http = require('http');
-
-
-
 const app = express();
+const path = require('path');
 const server = http.createServer(app)
 
 // See: http://expressjs.com/en/4x/api.html#app.settings.table
@@ -14,6 +12,7 @@ const PRODUCTION = app.get('env') === 'production';
 
 
 app.use('/', express.static(path.join(__dirname, 'views')));
+
 app.get('/ready', (req, res) => res.status(200).json({status:"ok"}));
 app.get('/live', (req, res) => res.status(200).json({status:"ok"}));
 
