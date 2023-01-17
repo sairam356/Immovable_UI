@@ -1,21 +1,25 @@
-var path = require('path');
-var express = require('express');
-var app = express();
-var morgan  = require('morgan');
+const express = require('express');
 const http = require('http');
 
+
+
+const app = express();
+const server = http.createServer(app)
+
+// See: http://expressjs.com/en/4x/api.html#app.settings.table
+const PRODUCTION = app.get('env') === 'production';
+
+// Administrative routes are not timed or logged, but for non-admin routes, pino
+// overhead is included in timing.
+
+
 app.use('/', express.static(path.join(__dirname, 'views')));
-app.engine('html', require('ejs').renderFile);
-app.use(morgan('combined'));
-
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8081
-
-
-app.set('port', server_port);
-
-const server = http.createServer(app);
+app.get('/ready', (req, res) => res.status(200).json({status:"ok"}));
+app.get('/live', (req, res) => res.status(200).json({status:"ok"}));
 
 
 
-server.listen(server_port);
-
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`App started on PORT ${PORT}`);
+});
