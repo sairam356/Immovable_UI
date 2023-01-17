@@ -5,8 +5,8 @@ var app = express();
 var htmlPath = path.join(__dirname, 'public');
 
 app.use(express.static(htmlPath));
- var port = process.env.PORT  ? 8989 : process.env.OPENSHIFT_NODEJS_PORT;
- var ip   = process.env.IP   ?   '0.0.0.0' : process.env.OPENSHIFT_NODEJS_IP ;
+ var port = process.env.OPENSHIFT_NODEJS_PORT;
+ var ip   = process.env.OPENSHIFT_NODEJS_IP ;
 var server = app.listen(port, function () {
 
     var host =  ip;
