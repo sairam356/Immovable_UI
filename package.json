@@ -23,6 +23,7 @@
   "homepage": "https://github.com/rsp/node-express-static-example#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "ejs": "^2.4.1"
   }
 }
