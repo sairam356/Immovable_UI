@@ -10,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/rsp/node-express-static-example.git"
   },
+  "engine": {
+    "node": "*",
+    "npm": "*"
+  },
   "author": "Rafał Pocztarski <r.pocztarski@gmail.com> (https://rsp.github.io/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rsp/node-express-static-example/issues"
+    "url": "https://github.com/sairam356/Immovable_UI.git"
   },
   "homepage": "https://github.com/rsp/node-express-static-example#readme",
   "dependencies": {
