@@ -19,9 +19,32 @@ $(document).ready(function() {
                     	    console.log("####### Oauth call ############")
                             console.log(resultObj1);
                             localStorage.setItem("tokenData", JSON.stringify(resultObj1));
-                                    var url = "./homepage.html"
-				                     	$(location).attr('href', url); 
+                              var url3 = "admin/"+username;
+                                 getAjaxCallForUserService(url3).then(function (resultObj2) {
+	                                       console.log(resultObj2);
 
+	                                       localStorage.setItem("userResponse", JSON.stringify(resultObj2));
+	                                        var custobj ={};
+
+	                                        custobj.firstName = resultObj2.firstName;
+	                                        custobj.lastName = resultObj2.lastName;
+	                                        custobj.passport = resultObj2.passport;
+	                                        custobj.address ="";
+	                                        custobj.userId =resultObj2.id;
+	                                         var url4 = 'customer'
+				                                    postAjaxCallForPropetyService(url4,obj).then(function (resultObj3) {
+                                                            console.log(resultObj3);
+                                                            console.log("####CUstomer is created ######3")
+				                                          //var url = "./homepage.html"
+								                     	 // $(location).attr('href', url); 
+									                        },function (xhr, status, err) {
+									                    console.log(status, err);
+									                    });
+
+                                      
+					                        },function (xhr, status, err) {
+					                    console.log(status, err);
+					                    });
                     },function (xhr, status, err) {
                     console.log(status, err);
                     });
@@ -32,8 +55,7 @@ $(document).ready(function() {
                     console.log(status, err);
              });
 
-
-	});
+         });
 
 
 	 $("#signup").click(function(event) {
@@ -97,14 +119,47 @@ var promise = 	$.ajax({
   return promise;
 }
 
+function postAjaxCallForPropetyService(endPoint ,obj,callback,val){
+var hostURL = getHostPURL();
+var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken)
+
+var promise = 	$.ajax({
+							url : hostURL+endPoint,
+							type : "POST",
+							dataType : "json",
+							contentType : "application/json; charset=utf-8",
+							data : JSON.stringify(obj),
+							beforeSend: function (xhr){ 
+                         xhr.setRequestHeader('Authorization',  "bearer "+accesstoken); 
+                   },
+							
+						}).done(function (responseData, status, xhr) {
+                       
+                    
+						 }).fail(function (xhr, status, err) {
+						      
+						 });
+
+  return promise;
+}
+
+
 function getAjaxCallForUserService(endPoint){
 	var hostURL = getHostURLFORUSERSERVICE();
 
+	var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken)
+
 	var promise = 	$.ajax({
+		                   crossDomain: true,
 							url : hostURL+endPoint,
 							type : "GET",
 							dataType : "json",
-							contentType : "application/json; charset=utf-8"
+							contentType : "application/json; charset=utf-8",
+						    headers: {"Authorization": 'Bearer '+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -122,4 +177,12 @@ var hostURL = "http://localhost:8080/"
    return hostURL;
 
 }
+
+
+function getHostPURL(){
+
+ var hostURL ="http://localhost:9191/"
+   return hostURL;
+}
+
 

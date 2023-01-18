@@ -18,7 +18,7 @@ app.get('/live', (req, res) => res.status(200).json({status:"ok"}));
 
 
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 9090;
 server.listen(PORT, () => {
   console.log(`App started on PORT ${PORT}`);
 });
