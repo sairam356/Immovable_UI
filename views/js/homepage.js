@@ -41,20 +41,25 @@ $(document).ready(function() {
 				                                             var url = "./homepage.html"
 								                     	     $(location).attr('href', url); 
 									                        },function (xhr, status, err) {
-									                    console.log(status, err);
+									                        	$.notify("Nothing Went Wrong !", "error");
+									                             console.log(status, err);
 									                    });
 
                                       
 					                        },function (xhr, status, err) {
-					                    console.log(status, err);
+					                        	$.notify("BOOM!", "error");
+					                          console.log(status, err);
+
 					                    });
                     },function (xhr, status, err) {
+                    	$.notify("Nothing Went Wrong!", "error");
                     console.log(status, err);
                     });
 
             
 
 			 },function (xhr, status, err) {
+			 	    $.notify("Nothing Went Wrong!", "error");
                     console.log(status, err);
              });
 

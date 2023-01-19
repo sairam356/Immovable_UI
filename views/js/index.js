@@ -256,6 +256,7 @@ function loadPropertyById(){
 	        $("#header4").html(desp[3]);
 	        $("#header5").html(desp2[0]);
 	        $("#header6").html(desp2[1]);   
+	        $("#productImage").attr('src', data.imageUrl);
 	        $('#tableData1P1').html("₹"+data.actualpropertyPrice);
 			$('#tableData1P2').html("₹"+data.transcationCostPrice);
 			$('#tableData2P3').html("₹"+data.propertyMetaData.annualGrossRent);
@@ -468,9 +469,13 @@ function processedToPayment(){
       var url = "customer/updateCustomerStake";      
       putAjaxCall(url, obj).then(function (resultObj) {
             console.log(resultObj);
+            if(resultObj.status === "Failure"){
+                
+            }else {
                 localStorage.removeItem("cartItems");
             	var url = "./homepage.html"
 			    $(location).attr('href', url);
+			}
 
       },function (xhr, status, err) {
 	     console.log(status, err);
