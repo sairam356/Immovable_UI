@@ -35,7 +35,10 @@ $(document).ready(function() {
 				                                    postAjaxCallForPropetyService(url4,obj).then(function (resultObj3) {
                                                             console.log(resultObj3);
                                                             console.log("####CUstomer is created ######3")
-				                                          //var url = "./homepage.html"
+                                                             var customerId = resultObj3.customerId;
+                                                             console.log(customerId);
+                                                             localStorage.setItem("customerId", customerId);
+				                                         ///var url = "./homepage.html"
 								                     	 // $(location).attr('href', url); 
 									                        },function (xhr, status, err) {
 									                    console.log(status, err);
@@ -132,7 +135,7 @@ var promise = 	$.ajax({
 							contentType : "application/json; charset=utf-8",
 							data : JSON.stringify(obj),
 							beforeSend: function (xhr){ 
-                         xhr.setRequestHeader('Authorization',  "bearer "+accesstoken); 
+                         xhr.setRequestHeader('Authorization',  "Bearer "+accesstoken); 
                    },
 							
 						}).done(function (responseData, status, xhr) {
@@ -158,8 +161,8 @@ console.log("########## accesstoken"+accesstoken)
 							url : hostURL+endPoint,
 							type : "GET",
 							dataType : "json",
-							contentType : "application/json; charset=utf-8",
-						    headers: {"Authorization": 'Bearer '+accesstoken},
+							contentType : "application/json",
+						    headers: {"Authorization": "Bearer "+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -181,7 +184,7 @@ var hostURL = "http://localhost:8080/"
 
 function getHostPURL(){
 
- var hostURL ="http://localhost:9191/"
+ var hostURL ="http://localhost:8080/"
    return hostURL;
 }
 

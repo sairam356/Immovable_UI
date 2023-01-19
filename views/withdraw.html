@@ -40,7 +40,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="getBalance()">
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -112,10 +112,10 @@
 
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">IMMOVABLE</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="./homepage.html">IMMOVABLE</a>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <a class="nav-link px-3" href="./sign-in.html">Sign out</a>
     </div>
   </div>
 </header>
@@ -166,7 +166,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Withdraw</h1>
-         <h2> Total Avaliable Balance   </h2>
+        <h2 id="showBalance"> Total Available Balance ₹</h2>
       </div>
       <div class="row">
   <div class="col-sm-6 mb-3 mb-sm-0">

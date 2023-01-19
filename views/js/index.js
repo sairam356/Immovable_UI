@@ -5,7 +5,7 @@ $(document).ready(function() {
 			event.preventDefault();
             var querParams = getUrlVars()["propertyid"];
 			var amount = $('#enterAmount').val();
-			var custId  = "63bef72480754b3fa54d433c";//localStorage.getItem("customerId");
+			var custId  = localStorage.getItem("customerId");
 			var obj ={};
 			obj.customerId = custId;
 			obj.price = amount;
@@ -59,7 +59,7 @@ $(document).ready(function() {
 
 
 function getDashboardData(){
-    var customerId  = "63c52e568b0ee22eb6d3314d";//localStorage.getItem("customerId");
+    var customerId  = localStorage.getItem("customerId");
     var url = 'customer/'+customerId;
 
 	 getAjaxCall(url).then(function (data) {
@@ -223,7 +223,7 @@ function loadPropertyById(){
 }
 
 function showCartItems(){
-	 var custId  = "63bef72480754b3fa54d433c";//localStorage.getItem("customerId");
+	 var custId  = localStorage.getItem("customerId");
 	 var url = "cart/"+custId;
 	 getAjaxCall(url).then(function (resultObj) {
             console.log(resultObj);
@@ -343,7 +343,7 @@ function getUpdateAmount(cartItemId){
 function deleteCartItem(cartItemId){
 
 
-	 var custId  = "63bef72480754b3fa54d433c";//localStorage.getItem("customerId");
+	 var custId  = localStorage.getItem("customerId");
 
 	 console.log(" cartItemId ##############"+cartItemId);
 
@@ -426,13 +426,18 @@ function processedToPayment(){
 function postAjaxCall(endPoint ,obj,callback){
 
 	var hostURL = getHostURL();
+		var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken);
+
 
 	var promise = 	$.ajax({
 							url : hostURL+endPoint,
 							type : "POST",
 							dataType : "json",
 							contentType : "application/json; charset=utf-8",
-							data : JSON.stringify(obj)
+							data : JSON.stringify(obj),
+							headers: {"Authorization": "Bearer "+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -447,12 +452,16 @@ function postAjaxCall(endPoint ,obj,callback){
 
 function getAjaxCall(endPoint){
 	var hostURL = getHostURL();
+			var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken);
 
 	var promise = 	$.ajax({
 							url : hostURL+endPoint,
 							type : "GET",
 							dataType : "json",
-							contentType : "application/json; charset=utf-8"
+							contentType : "application/json; charset=utf-8",
+							headers: {"Authorization": "Bearer "+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -466,13 +475,17 @@ function getAjaxCall(endPoint){
 
 function putAjaxCall(endPoint ,obj){
 	var hostURL = getHostURL();
+				var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken);
 
 	var promise = 	$.ajax({
 							url : hostURL+endPoint,
 							type : "PUT",
 							dataType : "json",
 							contentType : "application/json; charset=utf-8",
-							data : JSON.stringify(obj)
+							data : JSON.stringify(obj),
+							headers: {"Authorization": "Bearer "+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -486,12 +499,17 @@ function putAjaxCall(endPoint ,obj){
 
 function deleteAjaxCall(endPoint){
      var hostURL = getHostURL();
+     				var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+var accesstoken = tokenData.access_token;
+console.log("########## accesstoken"+accesstoken);
+
 
 	var promise = 	$.ajax({
 							url : hostURL+endPoint,
 							type : "DELETE",
 							dataType : "json",
-							contentType : "application/json; charset=utf-8"
+							contentType : "application/json; charset=utf-8",
+							headers: {"Authorization": "Bearer "+accesstoken},
 							
 						}).done(function (responseData, status, xhr) {
      
@@ -508,7 +526,7 @@ function deleteAjaxCall(endPoint){
 
 function getHostURL(){
 
- var hostURL ="https://immovable-property-service-kushalbajji-dev.apps.sandbox.x8i5.p1.openshiftapps.com/"; //"http://localhost:9191/"
+ var hostURL= "http://localhost:8080/";
    return hostURL;
 }
 
