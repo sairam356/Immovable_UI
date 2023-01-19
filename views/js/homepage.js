@@ -32,14 +32,14 @@ $(document).ready(function() {
 	                                        custobj.address ="";
 	                                        custobj.userId =resultObj2.id;
 	                                         var url4 = 'customer'
-				                                    postAjaxCallForPropetyService(url4,obj).then(function (resultObj3) {
+				                                    postAjaxCallForPropetyService(url4,custobj).then(function (resultObj3) {
                                                             console.log(resultObj3);
                                                             console.log("####CUstomer is created ######3")
                                                              var customerId = resultObj3.customerId;
                                                              console.log(customerId);
                                                              localStorage.setItem("customerId", customerId);
-				                                         ///var url = "./homepage.html"
-								                     	 // $(location).attr('href', url); 
+				                                             var url = "./homepage.html"
+								                     	     $(location).attr('href', url); 
 									                        },function (xhr, status, err) {
 									                    console.log(status, err);
 									                    });

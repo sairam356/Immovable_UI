@@ -66,6 +66,7 @@ function getDashboardData(){
 			   var htmlData = "";
            
           console.log(data);
+
       var  propertyCounter = data.propertyCounter;
  
       var properites = data.propertyStack;
@@ -105,12 +106,14 @@ function getDashboardData(){
 
         }
 
+      
+
+        $('#propertyCounter').html(propertyCounter);
+       
         $('#dashbordData').html(htmlData);
       
         $('#balanceAmount').html("₹"+balance);
-
-        $('#propertyCounter').html(propertyCounter);
-               
+             
 	   },function (xhr, status, err) {
 	     console.log(status, err);
 	  });

@@ -1,8 +1,8 @@
 function deposit(){
 	var amount = $('#enteredAmount').val();
 	console.log(amount);
-	
-	var url=  "wallet/getInfo/123"
+	var custId  = localStorage.getItem("customerId");
+	var url=  "wallet/getInfo/"+custId;
 	getAjaxCall(url).then(function (data){
 		console.log(data);
 	},function (xhr, status, err) {
@@ -29,10 +29,10 @@ function deposit(){
 	}});
 
 		const transaction = {
-		customerId: "123",
+		customerId: localStorage.getItem("customerId"),
   		transactionType: "DEPOSIT",
   		transactionStatus: "SUCCESS",
-  		amount: amount
+  		amount: Number(amount)
 		};
 		var url=  "wallet/transaction";
 	postAjaxCall(url,transaction,callbackDW).then(function (data){
@@ -52,11 +52,12 @@ function callbackDW(){
 function withdraw(){
 	var amount = $('#enteredAmount').val();
 	console.log(amount);
+	var custId  = localStorage.getItem("customerId");
 	const transaction = {
-  customerId: "123",
+  customerId: custId,
   transactionType: "WITHDRAW",
   transactionStatus: "SUCCESS",
-  amount: amount
+  amount: Number(amount)
 };
 var url=  "wallet/transaction";
 postAjaxCall(url,transaction,callbackDW).then(function (data){
@@ -72,13 +73,15 @@ postAjaxCall(url,transaction,callbackDW).then(function (data){
 
 
 function getWalletInfoById(){
-	var querParams = getUrlVars()["customerId"];
+	
 	//var url=  "wallet/getInfo/walletId="+querParams;
-	var url=  "wallet/getInfo/123"
+	var custId  = localStorage.getItem("customerId");
+	var url=  "wallet/getInfo/"+custId;
 	getAjaxCall(url).then(function (data){
 		var htmlData = "";
 		console.log(data);
 		$("#balance").append(data.balance);
+		localStorage.setItem("showBalance", data.balance);
 var transactions = data.walletTransactions;
 for (let i = 0; i < transactions.length; i++) {
 			           
@@ -99,5 +102,10 @@ for (let i = 0; i < transactions.length; i++) {
 	},function (xhr, status, err) {
      console.log(status, err);
   	});
+}
+
+function getBalance(){
+var bal = localStorage.getItem("showBalance");
+    $("#showBalance").append(bal);
 }
 
