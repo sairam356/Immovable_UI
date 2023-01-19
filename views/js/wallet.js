@@ -20,7 +20,7 @@ function deposit(){
 		};
 	postAjaxCall("wallet/save",wallet,callbackDW).then(function (data){
 		if (data != null) {
-		window.location.href='./homepage.html';
+		window.location.href='./wallet.html';
 		}
 
 	},function (xhr, status, err) {
@@ -62,7 +62,7 @@ function withdraw(){
 var url=  "wallet/transaction";
 postAjaxCall(url,transaction,callbackDW).then(function (data){
 	if (data !=null) {
-		window.location.href='./homepage.html';
+		window.location.href='./wallet.html';
 	}
 
 },function (xhr, status, err) {

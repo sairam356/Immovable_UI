@@ -1,6 +1,17 @@
 
 $(document).ready(function() {
 
+
+
+	$("#signOutApp").click(function(event) {
+		event.preventDefault();
+        localStorage.clear();
+         var url = "./sign-in.html"
+		$(location).attr('href', url);
+    });
+
+
+
   	$("#addTOCart").click(function(event) {
 			event.preventDefault();
             var querParams = getUrlVars()["propertyid"];
@@ -43,19 +54,53 @@ $(document).ready(function() {
     });
 
 
-    $('#processedToPayment').click(function(event){
-         event.preventDefault();
- 
+   $("#updateUser").click(function(event) {
+      event.preventDefault();
+      var userResponse = JSON.parse(localStorage.getItem("userResponse"));
 
+      var fname =   $("#inputFirstName").val();
+      var  lname = $("#inputLastName").val();
+      var email = $("#inputEmail").val();
+      var mobileNum = $("#inputMobileNum").val();
+      var  address = $("#inputAddress").val();
+      var obj ={};
 
-													
+      obj.id = userResponse.id;
+      obj.firstName = fname;
+      obj.lastName = lname;
+      obj.address = address;
+      obj.email = email;
+      obj.phone= mobileNum;
 
-    });
+       var url = 'admin';
+           postAjaxCall(url,obj).then(function (resultObj) {
+           	      console.log("################################")
+                   console.log(resultObj);
+                   localStorage.setItem("userResponse", JSON.stringify(resultObj));
+                     var url = "./profile.html"
+				     	$(location).attr('href', url);
 
-
+                 
+          },function (xhr, status, err) {
+                 console.log(status, err);
+           });
+   });
 
 
 });
+
+
+ $(function() { 
+	  console.log("####### verifiying ")
+	  var tokenData = JSON.parse(localStorage.getItem("tokenData"));
+	  console.log(tokenData);
+	  if(tokenData== null){
+	  	 var url = "./sign-in.html"
+		$(location).attr('href', url);
+       }
+
+
+    });
 
 
 function getDashboardData(){
@@ -109,8 +154,14 @@ function getDashboardData(){
       
 
         $('#propertyCounter').html(propertyCounter);
+
+        if(properites.length>0){
        
-        $('#dashbordData').html(htmlData);
+         $('#dashbordData').html(htmlData);
+
+         }else{
+         	$('#noData').html("<center><h1>No Investments </h1></center><br><br><br> <br> <br>");
+         }
       
         $('#balanceAmount').html("₹"+balance);
              
@@ -424,6 +475,20 @@ function processedToPayment(){
       },function (xhr, status, err) {
 	     console.log(status, err);
 	  });
+}
+
+
+function showUserInfoData(){
+     var userResponse = JSON.parse(localStorage.getItem("userResponse"));
+
+      $("#inputFirstName").val(userResponse.firstName);
+      $("#inputLastName").val(userResponse.lastName);
+      $("#inputEmail").val(userResponse.email);
+      $("#inputMobileNum").val(userResponse.phone);
+      $("#passPortNum").val(userResponse.passport);
+      $("#inputAddress").val(userResponse.address);
+      $("#inputUserName").val(userResponse.username);
+
 }
 
 function postAjaxCall(endPoint ,obj,callback){

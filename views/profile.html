@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="./dist/js/bootstrap.bundle.min.js"></script>
-
-
+<script src ="./js/jquery.min.js"></script> 
+<script src="./js/index.js"></script>
     <style>
 
       .bi {
@@ -37,7 +37,7 @@
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
-  <body>
+  <body onload="showUserInfoData()">
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -112,7 +112,7 @@
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="./homepage.html">IMMOVABLE</a>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="./sign-in.html">Sign out</a>
+        <a class="nav-link px-3" id ="signOutApp" >Sign out</a>
     </div>
   </div>
 </header>
@@ -171,43 +171,36 @@
                         <form class="row g-3">
                             <div class="col-md-4">
                             <label for="inputEmail4" class="form-label">FirstName</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <input type="text" class="form-control" id="inputFirstName">
                           </div>
                           <div class="col-md-4">
                             <label for="inputPassword4" class="form-label">LastName</label>
-                            <input type="password" class="form-control" id="inputPassword4">
+                            <input type="text" class="form-control" id="inputLastName">
                           </div>
                            <div class="col-md-4">
-                            <label for="inputPassword4" class="form-label">Nationality</label>
-                            <input type="password" class="form-control" id="inputPassword4">
+                            <label for="inputPassword4" class="form-label">UserName</label>
+                            <input type="text" class="form-control" id="inputUserName" disabled>
                           </div>
                           <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                            <input type="email" class="form-control" id="inputEmail">
                           </div>
                           <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Mobile Number</label>
-                            <input type="text" class="form-control" id="inputPassword4">
+                            <input type="text" class="form-control" id="inputMobileNum">
+                          </div>
+
+                          <div class="col-md-6">
+                            <label for="inputCity" class="form-label">PassPortNumber</label>
+                            <input type="text" class="form-control" id="passPortNum" disabled>
                           </div>
                           <div class="col-12">
                             <label for="inputAddress" class="form-label">Address</label>
                             <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
                           </div>
+                       
                           <div class="col-12">
-                            <label for="inputAddress2" class="form-label">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                          </div>
-                          <div class="col-md-6">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                          </div>
-              
-                          <div class="col-md-2">
-                            <label for="inputZip" class="form-label">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                          </div>
-                          <div class="col-12">
-                              <button type="submit" class="btn btn-primary">Update</button>
+                              <button type="submit" class="btn btn-primary" id="updateUser">Update</button>
                           </div>
 
                         </form>
