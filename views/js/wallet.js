@@ -3,31 +3,6 @@ function deposit(){
 	console.log(amount);
 	var custId  = localStorage.getItem("customerId");
 	var url=  "wallet/getInfo/"+custId;
-	getAjaxCall(url).then(function (data){
-		console.log(data);
-	},function (xhr, status, err) {
-     console.log(status, err);
-	if(xhr.status == 404){
-		const wallet = {
-		customerId: "123",
-		walletTransactions:[
-				{
-					transactionType: "DEPOSIT",
-  					transactionStatus: "SUCCESS",
-  					amount: amount
-				}
-			]
-		};
-	postAjaxCall("wallet/save",wallet,callbackDW).then(function (data){
-		if (data != null) {
-		window.location.href='./wallet.html';
-		}
-
-	},function (xhr, status, err) {
-     console.log(status, err);
-		});
-	}});
-
 		const transaction = {
 		customerId: localStorage.getItem("customerId"),
   		transactionType: "DEPOSIT",
@@ -37,10 +12,11 @@ function deposit(){
 		var url=  "wallet/transaction";
 	postAjaxCall(url,transaction,callbackDW).then(function (data){
 		if (data !=null) {
-			window.location.href='./homepage.html';
+			$(location).attr('href', "./homepage.html");
 		}
 
 	},function (xhr, status, err) {
+	$.notify("Something went wrong during the transaction update!", "error");
      console.log(status, err);
 	});
 }
@@ -62,11 +38,12 @@ function withdraw(){
 var url=  "wallet/transaction";
 postAjaxCall(url,transaction,callbackDW).then(function (data){
 	if (data !=null) {
-		window.location.href='./wallet.html';
+         $(location).attr('href', "./wallet.html");
 	}
 
 },function (xhr, status, err) {
      console.log(status, err);
+      $.notify("Something went wrong during the transaction update!", "error");
 });
 
 }
@@ -100,6 +77,7 @@ for (let i = 0; i < transactions.length; i++) {
 
 
 	},function (xhr, status, err) {
+	$.notify("Something went wrong while fetching the data!", "error");
      console.log(status, err);
   	});
 }

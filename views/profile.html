@@ -8,6 +8,7 @@
 <script src ="./js/jquery.min.js"></script> 
 <script src="./js/index.js"></script>
 <script src="./js/notify.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
 
       .bi {
@@ -139,7 +140,7 @@
             <li class="nav-item">
             <a class="nav-link" href="./wallet.html">
                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#bi-wallet"/></svg>
-                    Wallet
+              Transaction History
             </a>
           </li>
           <li class="nav-item">
@@ -152,6 +153,12 @@
             <a class="nav-link" href="./profile.html">
              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
               Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./prime-services.html">
+              <i class='fas fa-crown'></i>
+              Prime-Services
             </a>
           </li>
         
@@ -172,11 +179,11 @@
                         <form class="row g-3">
                             <div class="col-md-4">
                             <label for="inputEmail4" class="form-label">FirstName</label>
-                            <input type="text" class="form-control" id="inputFirstName">
+                            <input type="text" class="form-control" id="inputFirstName" required>
                           </div>
                           <div class="col-md-4">
                             <label for="inputPassword4" class="form-label">LastName</label>
-                            <input type="text" class="form-control" id="inputLastName">
+                            <input type="text" class="form-control" id="inputLastName" required>
                           </div>
                            <div class="col-md-4">
                             <label for="inputPassword4" class="form-label">UserName</label>
@@ -184,20 +191,20 @@
                           </div>
                           <div class="col-md-6">
                             <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail">
+                            <input type="email" class="form-control" id="inputEmail" required>
                           </div>
                           <div class="col-md-6">
                             <label for="inputPassword4" class="form-label">Mobile Number</label>
-                            <input type="text" class="form-control" id="inputMobileNum">
+                            <input type="text" class="form-control" id="inputMobileNum" maxlength="10" required>
                           </div>
 
                           <div class="col-md-6">
                             <label for="inputCity" class="form-label">PassPortNumber</label>
-                            <input type="text" class="form-control" id="passPortNum" disabled>
+                            <input type="text" class="form-control" id="passPortNum" value ="MO12367"disabled maxlength="10" required>
                           </div>
                           <div class="col-12">
                             <label for="inputAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                            <input type="text" class="form-control" id="inputAddress" placeholder="address">
                           </div>
                        
                           <div class="col-12">

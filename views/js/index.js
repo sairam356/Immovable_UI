@@ -10,6 +10,24 @@ $(document).ready(function() {
 		$(location).attr('href', url);
     });
 
+  
+
+
+    $("#updateLoanInfo").click(function(event){
+    	 	event.preventDefault();
+
+    	 	 var custId  = localStorage.getItem("customerId");
+    	 	 var url = 'customer/loan/'+custId;
+			 getAjaxCall(url).then(function (resultObj) {
+	                    var url = "./homepage.html"
+				      	$(location).attr('href', url);
+
+             },function (xhr, status, err) {
+          $.notify("Something went wrong while updating the cart!", "error");
+                 console.log(status, err);
+           });	 
+    })
+
 
 
   	$("#addTOCart").click(function(event) {
@@ -31,6 +49,7 @@ $(document).ready(function() {
 
                  
           },function (xhr, status, err) {
+          $.notify("Something went wrong while updating the cart!", "error");
                  console.log(status, err);
            });
 
@@ -71,19 +90,24 @@ $(document).ready(function() {
       obj.address = address;
       obj.email = email;
       obj.phone= mobileNum;
-
-       var url = 'admin';
-           postAjaxCall(url,obj).then(function (resultObj) {
+      if(obj.firstName == '' || obj.lastName == '' || obj.email == '' || obj.phone == ''){
+                 $.notify("Please enter valid data!", "error");
+                return;
+            }else{
+            var url = 'admin';
+            postAjaxCall(url,obj).then(function (resultObj) {
            	      console.log("################################")
                    console.log(resultObj);
                    localStorage.setItem("userResponse", JSON.stringify(resultObj));
                      var url = "./profile.html"
 				     	$(location).attr('href', url);
-
+                    $.notify("User Profile has been updated successfully!", "success");
                  
-          },function (xhr, status, err) {
+            },function (xhr, status, err) {
+                 $.notify("Something went wrong during the profile update!", "error");
                  console.log(status, err);
            });
+        }
    });
 
 
@@ -117,7 +141,10 @@ function getDashboardData(){
       var properites = data.propertyStack;
 
       var balance = data.wallet.balance;
-     
+
+      var totalInvestAmount = data.totalInvestAmount;
+
+      var annualrealizing = data.annualizedEarning;
 
      for (let i = 0; i < properites.length; i++) {
 
@@ -127,7 +154,7 @@ function getDashboardData(){
          htmlData = htmlData+`   
              <div class="col">
                   <div class="card h-100">
-                    <a href="./propertiesdetails.html?propertyid=${properites[i].property.id}"><img src="${properites[i].property.imageUrl}" class="card-img-top" alt="..."></a>
+                    <a href="#"><img src="${properites[i].property.imageUrl}" class="card-img-top" alt="..."></a>
                     <div class="card-body">
                          <h5 class="card-title">${desp[0]}</h5>
                                            
@@ -155,6 +182,10 @@ function getDashboardData(){
 
         $('#propertyCounter').html(propertyCounter);
 
+        $('#totalInvestAmount').html(" ₹ "+totalInvestAmount);
+
+        $('#annualizedEarning').html(" ₹ "+annualrealizing);
+
         if(properites.length>0){
        
          $('#dashbordData').html(htmlData);
@@ -167,6 +198,7 @@ function getDashboardData(){
              
 	   },function (xhr, status, err) {
 	     console.log(status, err);
+	     $.notify("Something went wrong while fetching the data!", "error");
 	  });
 
 
@@ -229,6 +261,7 @@ getAjaxCall('properties').then(function (data) {
   
 },function (xhr, status, err) {
      console.log(status, err);
+     $.notify("Something went wrong while fetching the data!", "error");
   });
 
   
@@ -273,9 +306,82 @@ function loadPropertyById(){
 
 	},function (xhr, status, err) {
      console.log(status, err);
+     $.notify("Something went wrong while fetching the data!", "error");
   });
 
 }
+
+function loadCustomersPropertyById(custPropertyStackData){
+     var custPropertyStackData  = localStorage.getItem("custPropertyStackData");
+	 console.log("###############################");
+	 console.log(custPropertyStackData);
+     var data = custPropertyStackData.split(":");
+     var customerId = data[0];
+     var customerPropertYStake = data[1];
+
+
+   var url=  "customer/"+customerId+"/"+customerPropertYStake;
+     	getAjaxCall(url).then(function (resultObj) {
+           console.log(resultObj);
+
+           var stackObj = resultObj.propertyStack[0];
+           var data = stackObj.property;
+            var description = data.propertyMetaData.description1;
+
+	        var description2 = data.propertyMetaData.description2;
+
+	        var desp = description.split(":");
+
+	        var desp2 = description2.split(":");
+
+	        var dateVal = stackObj.createdDate.substring(0, 10);
+
+	        var investmentAmount = stackObj.investedamount;
+
+	         var annualrealizing = resultObj.annualizedEarning;
+
+
+	        if(stackObj.customerRevenue !=null){
+
+	        		for (let i = 0; i < stackObj.customerRevenue.length; i++) {
+
+				        	var htmlData = htmlData+`
+				        	                  <tr> 
+			                                
+			                                   <td>${stackObj.customerRevenue.month}${stackObj.customerRevenue.year}</td>
+			                                
+			                                   <td>${stackObj.customerRevenue.actualAmount}</td>
+			                               </tr>`;
+                     }
+
+                    $("#tableData1").html(htmlData);
+
+
+	        }
+
+	        $("#annualNetIncome").append(" ₹ "+annualrealizing);
+           
+	        $("#header1").html(desp[0]);
+	        $("#header2").html(desp[1]);
+	        $("#header3").html(desp[2]);
+	        $("#header4").html(desp[3]);
+	        $("#header5").html(desp2[0]);
+	        $("#header6").html(desp2[1]);   
+	        $("#productImage").attr('src', data.imageUrl);
+	        $("#dateVal").html(dateVal);
+	        $("#totalPropertyPrice").html(`<center> ₹ ${investmentAmount}</center>`);
+
+            $("#sellToProperty").append(`<button type="submit" class="btn btn-outline-dark color-currency"  onclick="sellProperty('${data.id}:${investmentAmount}')">SELL PROPERTY </button>`);
+           
+
+
+	},function (xhr, status, err) {
+     console.log(status, err);
+     $.notify("Something went wrong while fetching the data!", "error");
+  });
+
+}
+
 
 function showCartItems(){
 	 var custId  = localStorage.getItem("customerId");
@@ -338,7 +444,7 @@ function showCartItems(){
 						    <div class="card">
 						      <div class="card-body">
 						        <h5 class="card-title">Total Payment  <span class ="texttoright">Rupees ${totalAmount}</span></h5>
-						         <button type="button" class="btn btn-outline-dark color-currency" onclick="processedToPayment()">Processed to Payment</button>      
+						         <button type="button" class="btn btn-outline-dark color-currency" onclick="moveToPaymentPage()">Processed to Payment</button>      
 						      
 						        </div>
 						      </div>
@@ -357,6 +463,7 @@ function showCartItems(){
  
   },function (xhr, status, err) {
 	     console.log(status, err);
+	     $.notify("Something went wrong while fetching the data!", "error");
 	  });
 
 
@@ -391,6 +498,7 @@ function getUpdateAmount(cartItemId){
 
       },function (xhr, status, err) {
 	     console.log(status, err);
+	     $.notify("Something went wrong while updating the data!", "error");
 	  });
 
 }
@@ -426,27 +534,44 @@ function deleteCartItem(cartItemId){
 
       },function (xhr, status, err) {
 	     console.log(status, err);
+	     $.notify("Something went wrong while updating the data!", "error");
 	  });
 
 
 }
 
 function showCustomerRenveueInfo(custPropertyStackData){
-	 console.log("###############################");
-	 console.log(custPropertyStackData);
-     var data = custPropertyStackData.split(":");
-     var customerId = data[0];
-     var customerPropertYStake = data[1];
+	
+	  localStorage.setItem("custPropertyStackData", custPropertyStackData);
+	     var url = "./investedpropertiesinfo.html"
+	    $(location).attr('href', url);
 
 }
 
+
+function moveToPaymentPage(){
+		var url = "./banksInfo.html?type=BUY";
+	    $(location).attr('href', url);
+}
+
+function sellProperty(custObj){
+console.log("############################### sell property")
+console.log("### "+custObj);
+ localStorage.setItem("sellInfo", JSON.stringify(custObj));
+ 	var url = "./banksInfo.html?type=SELL";
+	    $(location).attr('href', url);
+}
+
 function processedToPayment(){
+	  var querParams = getUrlVars()["type"];
 	console.log("###############################");
+	 if(querParams == "BUY"){
 	   	var cartObj = JSON.parse(localStorage.getItem("cartItems"));
 	   	var pstakeList =[];
         var obj ={}; 
         obj.customerId = cartObj.customerId;
         obj.cartAmount = cartObj.totalAmount;
+        obj.bankName ="SBI";
        
 
         var cartItemsObj = cartObj.cartItems;
@@ -470,7 +595,7 @@ function processedToPayment(){
       putAjaxCall(url, obj).then(function (resultObj) {
             console.log(resultObj);
             if(resultObj.status === "Failure"){
-                
+                $.notify("The transaction amount should be less than or equal to wallet balance!", "error");
             }else {
                 localStorage.removeItem("cartItems");
             	var url = "./homepage.html"
@@ -479,7 +604,64 @@ function processedToPayment(){
 
       },function (xhr, status, err) {
 	     console.log(status, err);
+	     $.notify("Something went wrong while updating the data!", "error");
 	  });
+    }else{
+
+        var custId  = localStorage.getItem("customerId");
+    	var sellInfo = JSON.parse(localStorage.getItem("sellInfo"));
+
+
+        var data = sellInfo.split(":");
+
+        var amount = data[1];
+        var proprtyId = data[0];
+
+        console.log(amount+":"+proprtyId);
+
+	   	var pstakeList =[];
+        var obj ={}; 
+        obj.customerId = custId;
+        obj.cartAmount = amount ;
+        obj.bankName ="SBI";
+       
+
+        
+
+
+       
+             var pstakeObj ={};
+             pstakeObj.customerId =custId;
+             pstakeObj.propertyId = proprtyId;
+             pstakeObj.investmentAmount = amount;
+             pstakeObj.transcationType = "SELL";
+
+             pstakeList.push(pstakeObj);
+
+        
+          obj.propertyStakeReDTO = pstakeList;
+
+      console.log(obj);
+
+      var url = "customer/updateCustomerStake";      
+      putAjaxCall(url, obj).then(function (resultObj) {
+            console.log(resultObj);
+            if(resultObj.status === "Failure"){
+                $.notify("The transaction amount should be less than or equal to wallet balance!", "error");
+            }else {
+                localStorage.removeItem("sellInfo");
+            	var url = "./homepage.html"
+			    $(location).attr('href', url);
+			}
+
+      },function (xhr, status, err) {
+	     console.log(status, err);
+	     $.notify("Something went wrong while updating the data!", "error");
+	  });
+
+
+    }
+
 }
 
 

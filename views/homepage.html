@@ -8,6 +8,7 @@
 <script src ="./js/jquery.min.js"></script> 
 <script src="./js/index.js"></script>
 <script src="./js/notify.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
 
       .bi {
@@ -139,7 +140,7 @@
             <li class="nav-item">
             <a class="nav-link" href="./wallet.html">
                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#bi-wallet"/></svg>
-                    Wallet
+              Transaction History
             </a>
           </li>
           <li class="nav-item">
@@ -152,6 +153,12 @@
             <a class="nav-link" href="./profile.html">
              <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
               Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./prime-services.html">
+              <i class='fas fa-crown'></i>
+              Prime-Services
             </a>
           </li>
         
@@ -170,43 +177,34 @@
   <img src="./images/dbimage.png" class="card-img-top" alt="...">
   <div class="card-body">
        <div class="row">
-  <div class="col-sm-3 mb-3 mb-sm-0">
+  <div class="col-sm-4 mb-3 mb-sm-0">
     <div class="card highltcolor">
       <div class="card-body">
         <p class="card-title">Total Investment Amount</p>
-        <h5 class="card-text">Rupees 1000000</h5>
+        <h5 class="card-text" id ="totalInvestAmount"></h5>
      
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-4">
     <div class="card highltcolor">
       <div class="card-body">
         <p class="card-title">Realised Earning</p>
-        <h5 class="card-text">Rupees 10000</h5>
+        <h5 class="card-text" id ="annualizedEarning">Rupees 10000</h5>
        
       </div>
     </div>
   </div>
-   <div class="col-sm-3">
+   <div class="col-sm-4">
     <div class="card highltcolor">
       <div class="card-body">
-        <p class="card-title">Annualized Rental</p>
+        <p class="card-title"> Est Annualized Rental</p>
         <h5 class="card-text">6.69%.</h5>
     
       </div>
     </div>
   </div>
-   <div class="col-sm-3">
-    <div class="card highltcolor">
-      <div class="card-body">
-        <p class="card-title">Avaliable Balance <button type="button"  style="margin-right: -10px;margin-top: 9px;" class="btn btn-outline-dark texttoright color-darkmore" id ="depositAmountDashboard">Deposit</button></p>
-               
-        <h5 class="card-text" id ="balanceAmount"> </h5>
-         
-      </div>
-    </div>
-  </div>
+  
 </div>
   </div>
 </div>

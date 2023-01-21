@@ -41,25 +41,25 @@ $(document).ready(function() {
 				                                             var url = "./homepage.html"
 								                     	     $(location).attr('href', url); 
 									                        },function (xhr, status, err) {
-									                        	$.notify("Nothing Went Wrong !", "error");
+									                        	$.notify("Something Went Wrong !", "error");
 									                             console.log(status, err);
 									                    });
 
                                       
 					                        },function (xhr, status, err) {
-					                        	$.notify("BOOM!", "error");
+					                        	$.notify("Something Went Wrong !!!", "error");
 					                          console.log(status, err);
 
 					                    });
                     },function (xhr, status, err) {
-                    	$.notify("Nothing Went Wrong!", "error");
+                    	$.notify("Something Went Wrong!", "error");
                     console.log(status, err);
                     });
 
             
 
 			 },function (xhr, status, err) {
-			 	    $.notify("Nothing Went Wrong!", "error");
+			 	    $.notify("Incorrect Username or Password!", "error");
                     console.log(status, err);
              });
 
@@ -85,9 +85,14 @@ $(document).ready(function() {
 		    obj.lastName = lastName;
 		    obj.email = email;
 		    obj.phone = mobileNum;
+		    obj.address = address;
+		    obj.passport =passport;
 
 		    console.log(obj);
-
+            if(obj.username == '' || obj.password == '' || obj.firstName == '' || obj.lastName == '' || obj.email == '' || obj.phone == ''){
+                 $.notify("Please enter valid data!", "error");
+                return;
+            }else{
 		    postAjaxCallForUserService('users/signUp',obj).then(function (resultObj) {
                  console.log("###########Sign Up  call###########");
                    console.log(resultObj);
@@ -96,8 +101,9 @@ $(document).ready(function() {
 
              	},function (xhr, status, err) {
                     console.log(status);
+                     $.notify("Something went wrong during Registration!", "error");
              });
-
+        }
 	});
 
 });

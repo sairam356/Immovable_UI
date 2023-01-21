@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sairam356/Immovable_UI.git"
+    "url": ""
   },
   "engine": {
     "node": "*",
@@ -18,9 +18,9 @@
   "author": "Sairam",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sairam356/Immovable_UI.git"
+    "url": ""
   },
-  "homepage": "https://github.com/rsp/node-express-static-example#readme",
+  "homepage": "",
   "dependencies": {
     "express": "^4.18.2",
     "morgan": "^1.7.0",

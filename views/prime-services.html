@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-              <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+             <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="./dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 <script src ="./js/jquery.min.js"></script> 
 <script src="./js/index.js"></script>
- <script src="./js/notify.min.js"></script>
-      <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="./js/notify.min.js"></script>
+ <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
 
       .bi {
@@ -34,13 +34,19 @@
         white-space: nowrap;
         -webkit-overflow-scrolling: touch;
       }
+      .centerTest {
+
+  margin: auto;
+  width: 77%;
+
+}
     </style>
 
     
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
-  <body onload="loadCustomersPropertyById()">
+  <body>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -99,13 +105,16 @@
   <symbol id="geo-fill" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
   </symbol>
-    <symbol id="bi-cart" viewBox="0 0 16 16">
+  <symbol id="bi-cart" viewBox="0 0 16 16">
    <path  fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
   </symbol>
-    <symbol id="bi-wallet" viewBox="0 0 16 16">
+
+  <symbol id="bi-wallet" viewBox="0 0 16 16">
   <path d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"/>
   </symbol>
+
 </svg>
+
 
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -125,10 +134,9 @@
           <li class="nav-item">
             <a class="nav-link" href="./homepage.html">
                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-              Portfolio
+                    Portfolio
             </a>
           </li>
- 
           <li class="nav-item">
             <a class="nav-link link-dark" href="./properties.html">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
@@ -136,14 +144,13 @@
             </a>
           </li>
 
-          </li>
             <li class="nav-item">
             <a class="nav-link" href="./wallet.html">
                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#bi-wallet"/></svg>
-                Transaction History
+                    Transaction History
             </a>
           </li>
-                    <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="./mycart.html">
                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#bi-cart"/></svg>
              MyCart
@@ -155,13 +162,12 @@
               Profile
             </a>
           </li>
-            <li class="nav-item">
-                <a class="nav-link" href="./prime-services.html">
-                    <i class='fas fa-crown'></i>
-                    Prime-Services
-                </a>
-            </li>
-
+           <li class="nav-item">
+            <a class="nav-link" href="./prime-services.html">
+              <i class='fas fa-crown'></i>
+              Prime-Services
+            </a>
+          </li>
         
         </ul>
 
@@ -170,83 +176,60 @@
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-    
-           <p> </p>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">PrimeServices</h1>
+                
+      </div>
+  <br>
+ 
 
-       <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class ="centerTest">
+  <div class="card" style="width: 50rem;">
+   
+        <div class="card-header text-center">
+                <b> Prime Services </b>
+           </div>
+       <div class="card-body ">
+        
+        <h4> Prime Service Provide Additional Benefits to Customer  and  help them to Invest More with Immovable </h4>
+          <br>
+         <li> <b>Prime Services will help  csutomers to connect with bankers  and get loans for them .</b></li>
+          <li> <b> Bankers will reach to you Customers , Check their Eligibility and Help to get the Loan.</b></li>
+         <li> <b>So that Customers can avali those loans and invest with Immovable.</b></li>
+          <li>  For above mentioned points Terms and Conditions Apply. </li>
 
-              <div class="col">
+          <br>
+          <br>
 
-                <div class="card">
+          
+          <button type="button" class="btn btn-primary  d-grid gap-2 col-7 mx-auto" id ="updateLoanInfo">Click Here to Avail PrimeServices</button>
 
-                  <div class="card-body">
+  
+  </div>
+ 
 
-                    <h2 class="card-title " id ="header1"></h2>
-                    <p class="card-text" id="header2"></p>
-                    <h5 id ="header3"></h3>
-                    <p id ="header4"></p>
+</div>
 
-                     <h5 id ="header5"></h3>
-                     <p id ="header6"></p>
 
-                     <h4>Renvenue Details</h4>
-                          <table  class ="text-bg-light p-3  table table-borderless  highltcolor" id="">
-                                      <thead>
-                                      <tr>
-                                         
-                                            <th>Monthly</th>
-                                            <th >ReceivedAmount</th>
-                                     </tr>
-                                      <thead>
-                                       <tbody id ="tableData1">
-                                      </tbody>
-                            </table>
-                            <hr>
 
-                        
-                                    
-                          <p class ="highltcolor"> Total Gross Earning  : <span class ="texttoright" id="annualNetIncome"></span></p>                            
-                       
-                    
-                    </div>
-                </div>
-              </div>
-              <div class="col ">
-                <div class="card h-70" >
-                   <img  id ="productImage" class="card-img-top" alt="...">
-                     <div class="card-body">
-                          <h4 class="card-title"><center>  Investmed Property Info</center></h4>
-                          <h3 id="totalPropertyPrice"></h3>
+ </div>
 
-                        
-                              <div>
-               <p class ="left-align-text" id ="fundedPercentageInNum"><span class ="texttoright" id="avaliableAmount"></span>
-                               
-                              </div>
-                             <table  class ="text-bg-light p-3  table table-borderless highltcolor" id ="tableData3">
-                           
-                           <tr>
-                                <td>Funded Date</td>
-                                <td id ="dateVal"></td>
-                            </tr>
-                            
-                            
-                            
-                            </table>
 
-                             <div class ="text-center" id ="sellToProperty">
-                               
-                                 
-                               
-                            </div>
-                     </div>
-                   </div>
-                </div>
-         </div>
-   </main>
+
+
+
+  
+    </main>
+
+
 
   </div>
 </div>
 
-</body>
+
+
+
+
+   
+  </body>
 </html>
