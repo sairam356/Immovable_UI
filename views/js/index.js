@@ -190,7 +190,9 @@ function getDashboardData(){
        
          $('#dashbordData').html(htmlData);
 
+
          }else{
+         	 $("#dummyData").html("0%");
          	$('#noData').html("<center><h1>No Investments </h1></center><br><br><br> <br> <br>");
          }
       
@@ -341,20 +343,21 @@ function loadCustomersPropertyById(custPropertyStackData){
 	         var annualrealizing = resultObj.annualizedEarning;
 
 
-	        if(stackObj.customerRevenue !=null){
+	        if(resultObj.customerRevenue !=null){
+	        	var htmlData="";
 
-	        		for (let i = 0; i < stackObj.customerRevenue.length; i++) {
+	        		for (let i = 0; i < resultObj.customerRevenue.length; i++) {
 
-				        	var htmlData = htmlData+`
+				        	 htmlData = htmlData+`
 				        	                  <tr> 
 			                                
-			                                   <td>${stackObj.customerRevenue.month}${stackObj.customerRevenue.year}</td>
+			                                   <td>${resultObj.customerRevenue[i].month} - ${resultObj.customerRevenue[i].year}</td>
 			                                
-			                                   <td>${stackObj.customerRevenue.actualAmount}</td>
+			                                   <td>₹ ${resultObj.customerRevenue[i].actualAmount}</td>
 			                               </tr>`;
                      }
-
-                    $("#tableData1").html(htmlData);
+                        $("#tableData1").html(htmlData);
+                   
 
 
 	        }
@@ -781,7 +784,7 @@ console.log("########## accesstoken"+accesstoken);
 
 function getHostURL(){
 
- var hostURL= "http://localhost:8080/";
+ var hostURL= "https://immovable-property-service-kushalbajji-dev.apps.sandbox.x8i5.p1.openshiftapps.com";
    return hostURL;
 }
 

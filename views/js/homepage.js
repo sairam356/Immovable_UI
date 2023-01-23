@@ -187,7 +187,7 @@ console.log("########## accesstoken"+accesstoken)
 
 
 function getHostURLFORUSERSERVICE(){
-var hostURL = "http://localhost:8080/"
+var hostURL = "https://immovable-property-service-kushalbajji-dev.apps.sandbox.x8i5.p1.openshiftapps.com"
    return hostURL;
 
 }
@@ -195,7 +195,7 @@ var hostURL = "http://localhost:8080/"
 
 function getHostPURL(){
 
- var hostURL ="http://localhost:8080/"
+ var hostURL ="https://immovable-property-service-kushalbajji-dev.apps.sandbox.x8i5.p1.openshiftapps.com"
    return hostURL;
 }
 
